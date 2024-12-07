@@ -40,7 +40,7 @@ jobs:
       - name: Build and Push Application Image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: group11-repo
+          ECR_REPOSITORY: clo835-final
           IMAGE_TAG: appv1.1
         run: |
           cd webapp/
@@ -50,7 +50,7 @@ jobs:
       - name: Build and Push MySQL DB Image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: group11-repo
+          ECR_REPOSITORY: clo835-final
           IMAGE_TAG: dbv1.0
         run: |
           cd webapp/
