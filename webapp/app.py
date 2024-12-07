@@ -30,19 +30,19 @@ DOWNLOADS_PATH = "static/downloads"
 if not os.path.exists(DOWNLOADS_PATH):
     os.makedirs(DOWNLOADS_PATH)
 
-# Download the background image from the provided URL
+# Download the background image from the S3 URL
 IMAGE_PATH = os.path.join(DOWNLOADS_PATH, "background.jpg")
 try:
     if IMAGE_URL:
-        response = requests.get(IMAGE_URL)
+        response = requests.get(IMAGE_URL, timeout=10)  # Set a timeout for the request
         if response.status_code == 200:
             with open(IMAGE_PATH, "wb") as f:
                 f.write(response.content)
             print("Background image downloaded successfully.")
         else:
-            print("Failed to download background image. HTTP Status:", response.status_code)
+            print(f"Failed to download background image. HTTP Status: {response.status_code}")
 except Exception as e:
-    print("Error downloading background image:", e)
+    print(f"Error downloading background image: {e}")
 
 # Set the path for Flask to use
 BACKGROUND_IMAGE_PATH = "/" + IMAGE_PATH
