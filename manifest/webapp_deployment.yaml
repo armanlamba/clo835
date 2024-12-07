@@ -1,62 +1,64 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp
-  labels:
-    app: employees
+  name: flask-app
+  namespace: final 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: employees
+      app: flask-app
   template:
     metadata:
       labels:
-        app: employees
+        app: flask-app
     spec:
-      serviceAccountName: clo835-group11  # Assign the created ServiceAccount
       containers:
-        - name: webapp
-          image: 139675527364.dkr.ecr.us-east-1.amazonaws.com/group11-repo:appv1.0
+        - name: flask-app
+          image: 289052325869.dkr.ecr.us-east-1.amazonaws.com/clo835-final:appv1.1
+          imagePullPolicy: Always  
           ports:
-            - containerPort: 81
+            - containerPort: 81  
           env:
             - name: DBHOST
-              valueFrom:
-                configMapKeyRef:
-                  name: webapp
-                  key: DBHOST
-            - name: DBPORT
-              valueFrom:
-                configMapKeyRef:
-                  name: webapp
-                  key: DBPORT
+              value: "mysql.final.svc.cluster.local"  
             - name: DBUSER
-              valueFrom:
-                configMapKeyRef:
-                  name: webapp
-                  key: DBUSER      
-            
-              
+              value: "root"  
             - name: DBPWD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secrets
-                  key: mysql-root-password
+                  name: db-secret  
+                  key: password    
             - name: DATABASE
+              value: "employees"  
+            - name: DBPORT
+              value: "3306"  
+            - name: BACKGROUND_IMAGE
+              value: "https://arman-finalproject.s3.us-east-1.amazonaws.com/image1.jpg  
+            - name: GROUP_NAME
+              value: "GROUP6"  
+            - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: mysql-secrets
-                  key: mysql-database
-            
-              
-            - name: GROUP_NAME
+                  name: aws-secret  
+                  key: AWS_ACCESS_KEY_ID  
+            - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
-                configMapKeyRef:
-                  name: webapp
-                  key: GROUP_NAME
-            - name: IMAGE_URL
+                secretKeyRef:
+                  name: aws-secret  
+                  key: AWS_SECRET_ACCESS_KEY  
+            - name: AWS_SESSION_TOKEN
               valueFrom:
-                configMapKeyRef:
-                  name: webapp
-                  key: IMAGE_URL
+                secretKeyRef:
+                  name: aws-secret  
+                  key: AWS_SESSION_TOKEN  
+            - name: APP_COLOR
+              value: "lime"  
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+        

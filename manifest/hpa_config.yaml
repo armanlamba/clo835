@@ -8,5 +8,5 @@ spec:
     kind: Deployment
     name: webapp
   minReplicas: 3
-  maxReplicas: 3  # Adjust this as needed
-  targetCPUUtilizationPercentage: 5 # Adjust this to a low value for quick testing
+  maxReplicas: 3 
+  targetCPUUtilizationPercentage: 5 

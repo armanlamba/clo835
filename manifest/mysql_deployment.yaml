@@ -17,10 +17,10 @@ spec:
         app: mysql
         component: backend
     spec:
-      serviceAccountName: clo835-group11  # Assign the created ServiceAccount
+      serviceAccountName: clo835-group6
       containers:
       - name: mysql-db
-        image: 139675527364.dkr.ecr.us-east-1.amazonaws.com/group11-repo:dbv1.0
+        image: 289052325869.dkr.ecr.us-east-1.amazonaws.com/clo835-final:dbv1.0
         env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:

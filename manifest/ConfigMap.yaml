@@ -5,8 +5,7 @@ metadata:
 data:
   DBHOST: "mysql.final.svc.cluster.local"
   DBPORT: "3306"
-  GROUP_NAME: "GROUP11"
+  GROUP_NAME: "GROUP6"
   DBUSER: "root"
-  #IMAGE_URL: "https://group11-finalproject-s3.s3.amazonaws.com/sample.jpg"
-  IMAGE_URL: "https://group11-finalproject-s3.s3.amazonaws.com/sample1.jpg"
+  IMAGE_URL: "https://arman-finalproject.s3.us-east-1.amazonaws.com/image1.jpg"
  
