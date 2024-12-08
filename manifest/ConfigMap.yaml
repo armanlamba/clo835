@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: webapp
 data:
-  DBHOST: "mysql.final.svc.cluster.local"
+  DBHOST: "mysql"
   DBPORT: "3306"
   GROUP_NAME: "GROUP6"
   DBUSER: "root"
